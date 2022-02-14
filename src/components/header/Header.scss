@@ -1,0 +1,16 @@
+.header {
+    font-size: 25px;
+    ul {
+        display: flex;
+        justify-content: center;
+        column-gap: 25px;
+
+        li {
+            list-style: none;
+
+            a {
+                text-align: none;
+            }
+        }
+    }
+}
