@@ -1,9 +1,13 @@
 .header {
     font-size: 25px;
+    padding: 25px;
+    border-bottom: 1px solid #ddd;
     ul {
         display: flex;
         justify-content: center;
         column-gap: 25px;
+        padding: 0;
+        margin: 0;
 
         li {
             list-style: none;
