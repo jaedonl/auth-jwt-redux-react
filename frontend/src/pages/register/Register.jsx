@@ -1,15 +1,18 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from "react-router-dom";
+import axios from 'axios'
 import './Register.scss'
 
 const Register = () => {
   const [formData, setFormData] = useState({
-    name: '',
+    username: '',
     email: '',
     password: '',
     password2: '',
   })
+  const navigate = useNavigate()
 
-  const { name, email, password, password2 } = formData
+  const { username, email, password, password2 } = formData
 
   const onChange = (e) => {
     setFormData({
@@ -18,12 +21,31 @@ const Register = () => {
     })
   }
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault()
+    const BASE_URL = "http://localhost:8000/api/"
 
     if (password !== password2) {
-      
+      console.log('Password not matching');
+
+    } else {
+
+      try {
+        const userData = {
+          username,
+          email,
+          password,
+        }
+        await axios.post(`${BASE_URL}auth/register`, userData )
+  
+        navigate('/')
+  
+      } catch (error) {
+        console.log(error);
+      }
     }
+    
+
   }
 
   return (
@@ -37,9 +59,9 @@ const Register = () => {
             <input
               type='text'
               className='form-control'
-              id='name'
-              name='name'
-              value={name}
+              id='username'
+              name='username'
+              value={username}
               placeholder='Enter your name'
               onChange={onChange}
             />

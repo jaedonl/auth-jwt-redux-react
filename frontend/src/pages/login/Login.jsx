@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { login } from '../../redux/apiCalls'
 import './Login.scss'
 
 const Login = () => {
@@ -6,12 +9,15 @@ const Login = () => {
     email: '',
     password: ''
   })
-
   const { email, password } = formData
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-  }
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const { user, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  )
+
 
   const onChange = (e) => {
     setFormData({
@@ -20,8 +26,13 @@ const Login = () => {
     })
   }
 
-  const onSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
+
+    const userData = { email, password }
+
+    login(dispatch, userData)  
+
   }
 
   return (
