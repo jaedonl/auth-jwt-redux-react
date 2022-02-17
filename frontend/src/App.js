@@ -3,7 +3,7 @@ import Home from './pages/home/Home';
 import Login from './pages/login/Login'
 import Register from './pages/register/Register'
 import Header from './components/header/Header';
-import { BrowserRouter as Router, Routes, Route, useHistory, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Redirect } from "react-router-dom";
 
 function App() {
   return (
