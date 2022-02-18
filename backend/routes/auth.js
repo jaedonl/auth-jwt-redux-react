@@ -15,6 +15,7 @@ router.post('/register', async (req, res) => {
             ).toString(),
             isAdmin: false,
         })
+        
         const user = await newUser.save()
         res.status(200).json(user)
     } catch (error) {
@@ -26,7 +27,6 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
     try {
         const user = await User.findOne({ email: req.body.email })
-
 
         if (!user) {
             res.status(401).json('Wrong email.')
