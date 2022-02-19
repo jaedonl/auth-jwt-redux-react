@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import './Login.scss'
-import { login } from '../../redux/apiCalls'
-import { useDispatch } from 'react-redux'
+import { login, resetError } from '../../redux/apiCalls'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   })
+  const { isLoading, isError, user } = useSelector((state) => state.auth)
+  const navigate = useNavigate()
   const dispatch = useDispatch()
+  
 
   const { email, password } = formData
 
@@ -21,10 +25,9 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()    
-    
-    login( dispatch, { email, password})
+    login(dispatch, { email, password})        
   }
-
+   
   return (
     <div className="login">
       <form className="contactForm">
@@ -56,7 +59,7 @@ const Login = () => {
         </div>
 
         <button className="contactSubmit" onClick={handleSubmit}>SUBMIT</button>          
-
+        { isError && <h3>login failed.</h3>}
                       
       </form>   
     </div>

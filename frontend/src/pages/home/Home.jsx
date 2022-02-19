@@ -12,11 +12,6 @@ const Home = () => {
       <div>
         <h2>Please Log in.</h2>
       </div>
-
-      <div>
-        <h2>Hi, Jaedon!</h2>        
-        <h4>You are logged in.</h4>
-      </div>      
     </div>
   )
 }
