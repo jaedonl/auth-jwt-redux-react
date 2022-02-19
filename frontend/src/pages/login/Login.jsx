@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import './Login.scss'
+import { login } from '../../redux/apiCalls'
+import { useDispatch } from 'react-redux'
 
 const Login = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   })
+  const dispatch = useDispatch()
 
   const { email, password } = formData
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-  }
 
   const onChange = (e) => {
     setFormData({
@@ -20,8 +19,9 @@ const Login = () => {
     })
   }
 
-  const onSubmit = (e) => {
-    e.preventDefault()
+  const handleSubmit = (e) => {
+    e.preventDefault()    
+    login( dispatch, formData)
   }
 
   return (

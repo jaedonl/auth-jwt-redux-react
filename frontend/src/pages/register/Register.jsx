@@ -23,7 +23,7 @@ const Register = () => {
   }
   
 
-  const onSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
   
     if (password !== password2) {
@@ -41,8 +41,6 @@ const Register = () => {
         setIsSuccess(false)
       }    
     }
-
-    
   }
 
   return (
@@ -100,7 +98,7 @@ const Register = () => {
             />
           </div>
           <div className='form-group'>
-            <button type='submit' className='btn btn-block' onClick={onSubmit}>
+            <button type='submit' className='btn btn-block' onClick={handleSubmit}>
               Submit
             </button>
           </div>
