@@ -1,17 +1,14 @@
 import React from 'react'
 import './Home.scss'
-import { useSelector } from 'react-redux'
 
-
-const Home = () => {
-  // const user = useSelector((state) => state.user)
-  // console.log(user);
-
+const Home = ({ user }) => {
+  const currentUser = user.user
+  
   return (
     <div className="home">
-      <div>
-        <h2>Please Log in.</h2>
-      </div>
+      
+      { currentUser ? <h1>Welcome, <br/>{currentUser.username}</h1> : <h1>Please Log in.</h1>}
+      
     </div>
   )
 }

@@ -7,10 +7,7 @@ const authSlice = createSlice({
         isLoading: false,
         isError: false,
     },
-    reducers: {
-        reset: (state) => {            
-            state.isError = false
-        },
+    reducers: {        
         loginStart: (state) => {
             state.isLoading = true
             state.isError = false
@@ -27,6 +24,9 @@ const authSlice = createSlice({
         loggingOut: (state) => {
             state.user = null
             state.isLoading = false
+            state.isError = false
+        },
+        reset: (state) => {            
             state.isError = false
         },
     },

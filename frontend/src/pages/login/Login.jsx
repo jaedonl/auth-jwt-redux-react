@@ -2,19 +2,20 @@ import React, { useEffect, useState } from 'react'
 import './Login.scss'
 import { login, resetError } from '../../redux/apiCalls'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Login = () => {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: ''
-  })
-  const { isLoading, isError, user } = useSelector((state) => state.auth)
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-  
-
+  const [formData, setFormData] = useState({email: '', password: ''})
+  const [redirect, setRedirect] = useState(false)
   const { email, password } = formData
+  const { isLoading, isError, user } = useSelector((state) => state.auth)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const location = useLocation()  
+  
+  useEffect(() => {
+    if (user) navigate('/')
+  },[location, user])
 
   const onChange = (e) => {
     setFormData({
@@ -23,10 +24,15 @@ const Login = () => {
     })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e) => {    
     e.preventDefault()    
     login(dispatch, { email, password})        
-  }
+    // setRedirect(true) 
+  }  
+
+  useEffect(() => {
+    resetError(dispatch)
+  }, [])
    
   return (
     <div className="login">

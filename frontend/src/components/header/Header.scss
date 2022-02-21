@@ -11,7 +11,10 @@
 
         li {
             list-style: none;
-
+            cursor: pointer;
+            &:hover {
+                text-decoration: underline;
+            }
             a {
                 text-align: none;
             }
