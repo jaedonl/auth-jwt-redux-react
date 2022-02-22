@@ -1,5 +1,10 @@
 .home {
     display: flex;
-    justify-content: center;
+    flex-flow: column;
+    // justify-content: center;
     padding: 25px;
+    
+    hr {
+        width: 100%;
+    }
 }
