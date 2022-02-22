@@ -2,6 +2,8 @@ import axios from "axios";
 
 const BASE_URL = "http://localhost:8000/api/";
 // const TOKEN = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).auth).user.token;
+let TOKEN
+const findToken = JSON.parse(localStorage.getItem("persist:root"));
 
 // console.log(TOKEN)
 

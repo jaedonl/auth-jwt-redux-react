@@ -11,5 +11,7 @@ router.get('/all', verifyTokenAndAdmin, async (req, res) => {
         res.status(500).send(error)
     }
 })
+
+router.get('/find/:id', verifyToken)
  
 module.exports = router;
