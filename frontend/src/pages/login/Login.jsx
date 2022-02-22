@@ -6,9 +6,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 const Login = () => {
   const [formData, setFormData] = useState({email: '', password: ''})
-  const [redirect, setRedirect] = useState(false)
   const { email, password } = formData
-  const { isLoading, isError, user } = useSelector((state) => state.auth)
+  const { isError, user } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const location = useLocation()  
@@ -27,13 +26,12 @@ const Login = () => {
   const handleSubmit = (e) => {    
     e.preventDefault()    
     login(dispatch, { email, password})        
-    // setRedirect(true) 
   }  
 
   useEffect(() => {
     resetError(dispatch)
   }, [])
-   
+  
   return (
     <div className="login">
       <form className="contactForm">

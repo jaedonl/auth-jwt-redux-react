@@ -9,8 +9,6 @@ const Home = ({ user }) => {
     <div className="home">
       { currentUser ? <h1>Welcome, <br/>{currentUser.username}</h1> : <h1>Please Log in.</h1>}
       
-      <hr />
-
       <Board />
 
     </div>

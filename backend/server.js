@@ -22,6 +22,7 @@ app.use("/api/auth", authRoute)
 app.listen(process.env.PORT || 8000, () => {
     console.log('Backend server is running!')
 })
+
 //MONGO_URL
 //PASS_SEC
-//JWT_SEC
+//JWT_SEC jaedonjwtbasicauth or jaedon
