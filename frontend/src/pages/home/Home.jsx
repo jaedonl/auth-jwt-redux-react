@@ -25,6 +25,7 @@ const Home = () => {
           isAdmin: true
       })
       console.log(res.data)
+      
       // window.location.reload()
       
     } catch (error) {
