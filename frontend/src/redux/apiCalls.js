@@ -8,7 +8,7 @@ export const login = async (dispatch, user) => {
     try {
         const res = await publicRequest.post('/auth/login', user)   
         dispatch(loginSuccess(res.data))
-        
+        window.location.reload()
     } catch (error) {
         dispatch(loginFailure())   
     }       
@@ -18,8 +18,8 @@ export const resetError = (dispatch) => {
     dispatch(reset())
 }
 
-export const logout = (dispatch) => {
-    dispatch(loggingOut())
+export const logout = async (dispatch) => {
+    await dispatch(loggingOut())
 }
 
 
@@ -34,3 +34,15 @@ export const getUserList = async (dispatch) => {
         dispatch(getUserFailure())   
     }       
 }
+
+// export const changeUserPermission = async (id, dispatch) => {
+//     try {
+//         const res = await userRequest.put(`/users/${id}`, {
+//             isAdmin: true
+//         })
+//         console.log(res.data)
+        
+//     } catch (error) {
+//         console.log(error)
+//     }       
+// }

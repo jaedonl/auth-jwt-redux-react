@@ -23,9 +23,9 @@ const Login = () => {
     })
   }
 
-  const handleSubmit = (e) => {    
+  const handleSubmit = async (e) => {    
     e.preventDefault()    
-    login(dispatch, { email, password})        
+    await login(dispatch, { email, password})        
   }  
 
   useEffect(() => {

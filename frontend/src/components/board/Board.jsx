@@ -1,25 +1,23 @@
 import React, {useState, useEffect} from 'react';
+import { useLocation } from 'react-router-dom';
 import './Board.scss'
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserList } from '../../redux/apiCalls'
 
 const Board = () => {
-    const [isFetching, setIsFetching] = useState(true)
-    const currentUser = useSelector((state) => state.auth)
+    const [isFetching, setIsFetching] = useState(true)    
+    const user = useSelector((state) => state.auth)
     const userList = useSelector((state) => state.user)
     const dispatch = useDispatch()
+    const location = useLocation()
 
     useEffect(() => {
         const getUser = async () => {
             await getUserList(dispatch)
             setIsFetching(false)
-        }                
-        getUser()
-    }, [])
-
-    useEffect(() => {
-        if (userList.users.length > 0) console.log(userList.users);   
-    }, [isFetching])
+        }      
+        if (user.user.isAdmin) getUser()        
+    }, [user, location])
 
     return (
         <div className="board">

@@ -8,8 +8,8 @@ const Header = ({ user }) => {
     const dispatch = useDispatch()
     const currentUser = user.user
     
-    const handleLogout = () => {        
-        logout(dispatch)
+    const handleLogout = async () => {        
+        await logout(dispatch)
     }
 
     return (
