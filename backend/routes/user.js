@@ -12,6 +12,7 @@ router.get('/all', verifyTokenAndAdmin, async (req, res) => {
     }
 })
 
+
 router.put('/:id', verifyToken, async (req, res) => {
     try {
         const filter = { username: req.params.id }

@@ -35,14 +35,16 @@ export const getUserList = async (dispatch) => {
     }       
 }
 
-// export const changeUserPermission = async (id, dispatch) => {
-//     try {
-//         const res = await userRequest.put(`/users/${id}`, {
-//             isAdmin: true
-//         })
-//         console.log(res.data)
+export const changeUserPermission = async (dispatch, id) => {
+    try {
+        const res = await userRequest.put(`/users/${id}`, {
+            isAdmin: true
+        })
+        alert('User permission changed. Please log in again.')
+        dispatch(loggingOut())
+        console.log(res.data)
         
-//     } catch (error) {
-//         console.log(error)
-//     }       
-// }
+    } catch (error) {
+        console.log(error)
+    }       
+}

@@ -2,6 +2,7 @@ const router = require("express").Router()
 const User = require("../models/User")
 const CryptoJS = require("crypto-js")
 const jwt = require("jsonwebtoken")
+const { verifyToken, verifyTokenAndAdmin } = require("./verifyToken")
 
 
 router.post('/register', async (req, res) => {
@@ -56,6 +57,18 @@ router.post('/login', async (req, res) => {
         res.status(200).json({...others, token})
         
     } catch (error) {        
+        console.log(error)
+    }
+})
+
+router.put('/:id', verifyToken, async (req, res) => {
+    try {
+        const user = await User.findByIdAndUpdate(req.params.id, {
+            $set: req.body
+        }, { new: true})
+        res.status(200).json(user)
+
+    } catch (error) {
         console.log(error)
     }
 })

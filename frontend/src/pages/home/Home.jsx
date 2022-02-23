@@ -2,13 +2,15 @@ import React, {useState, useEffect} from 'react'
 import { userRequest } from "../../requestMethods";
 import './Home.scss'
 import Board from '../../components/board/Board'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import {changeUserPermission} from '../../redux/apiCalls'
 
 
 const Home = () => {
   const user = useSelector((state) => state.auth).user
   const [string, setString] = useState('')
-  
+  const dispatch = useDispatch()
+
   const changePermission = (e) => {
     setString(e.target.value)
   }
@@ -19,15 +21,11 @@ const Home = () => {
     else document.querySelector('.permissionBtn').disabled = true    
   }, [string])
 
+
   const updatePermission = async () => {
     try {
-      const res = await userRequest.put(`/users/${user.username}`, {
-          isAdmin: true
-      })
-      console.log(res.data)
-      
-      // window.location.reload()
-      
+      await changeUserPermission(dispatch, user.username)
+            
     } catch (error) {
         console.log(error)
     }      
@@ -40,10 +38,10 @@ const Home = () => {
       { 
         (!user || (user && !user.isAdmin)) ? 
           <div>
-            <h2>Only Admin can see the board.</h2> 
 
             { (user && !user.isAdmin) ? 
             <>
+              <h2>Only Admin can see the board.</h2>
               <h3>Please write "<i>permission</i>" and submit to be an admin.</h3>
               <input type="text" placeholder="permission" name="permission" value={string} onChange={changePermission} />
               
