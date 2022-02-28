@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react'
-import { userRequest } from "../../requestMethods";
 import './Home.scss'
 import Board from '../../components/board/Board'
 import { useSelector, useDispatch } from 'react-redux';
