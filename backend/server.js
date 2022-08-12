@@ -25,4 +25,4 @@ app.listen(process.env.PORT || 8000, () => {
 
 //MONGO_URL
 //PASS_SEC
-//JWT_SEC jaedonjwtbasicauth or jaedon
+//JWT_SEC
